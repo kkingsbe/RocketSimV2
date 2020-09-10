@@ -1,11 +1,13 @@
 <script>
     export let parameter
     export let defaultValue
+    export let value
+    value = defaultValue
 </script>
 
 <main>
     <p>{parameter}</p>
-    <input id={parameter} placeholder={parameter} value={defaultValue}>
+    <input id={parameter} placeholder={parameter} bind:value={value}>
 </main>
 
 <style>

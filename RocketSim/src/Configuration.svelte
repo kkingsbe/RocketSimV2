@@ -1,19 +1,28 @@
 <script>
     import InputGroup from './InputGroup.svelte'
+    export let dryMass
+    export let propMass
+    export let thrustCurve
+    export let airDensity
+    export let noseConeType
+    export let fuselageDiameter
+    export let numFins
+    export let finLegth
+    export let finWidth
 </script>
 
 <main>
     <h1>Configure Parameters:</h1>
     <div class="inputGrid">
-        <InputGroup parameter="Dry Mass" defaultValue={150.3}></InputGroup>
-        <InputGroup parameter="Prop Mass" defaultValue={0.0359}></InputGroup>
-        <InputGroup parameter="Thrust Curve" defaultValue={"default"}></InputGroup>
-        <InputGroup parameter="Air Density" defaultValue={"1.225"}></InputGroup>
-        <InputGroup parameter="Nose Cone Type" defaultValue={"1"}></InputGroup>
-        <InputGroup parameter="Fuselage Diameter" defaultValue={"76"}></InputGroup>
-        <InputGroup parameter="Number of Fins" defaultValue={"4"}></InputGroup>
-        <InputGroup parameter="Fin Length" defaultValue={"30"}></InputGroup>
-        <InputGroup parameter="Fin Width" defaultValue={"50"}></InputGroup>
+        <InputGroup parameter="Dry Mass" defaultValue={150.3} bind:value={dryMass}></InputGroup>
+        <InputGroup parameter="Prop Mass" defaultValue={0.0359} bind:value={propMass}></InputGroup>
+        <InputGroup parameter="Thrust Curve" defaultValue={"default"} bind:value={thrustCurve}></InputGroup>
+        <InputGroup parameter="Air Density" defaultValue={"1.225"} bind:value={airDensity}></InputGroup>
+        <InputGroup parameter="Nose Cone Type" defaultValue={"1"} bind:value={noseConeType}></InputGroup>
+        <InputGroup parameter="Fuselage Diameter" defaultValue={"76"} bind:value={fuselageDiameter}></InputGroup>
+        <InputGroup parameter="Number of Fins" defaultValue={"4"} bind:value={numFins}></InputGroup>
+        <InputGroup parameter="Fin Length" defaultValue={"30"} bind:value={finLegth}></InputGroup>
+        <InputGroup parameter="Fin Width" defaultValue={"50"} bind:value={finWidth}></InputGroup>
     </div>
 </main>
 

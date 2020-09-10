@@ -4,6 +4,16 @@
 	import './Configuration.svelte'
 	import Configuration from './Configuration.svelte'
 
+	var dryMass = 0
+	var propMass = 0
+	var thrustCurve = "default"
+	var airDensity = 0
+	var noseConeType = 0
+	var fuselageDiameter = 0
+	var numFins = 0
+	var finLength = 0
+	var finWidth = 0
+
 	//Couldn't figure out the best way to import these files, so I just put everything into one file... Bad coding, I know
 	class Simulation {
 		constructor(rocket, timeStep, airDensity) {
@@ -277,21 +287,23 @@
 	var rocket
 	async function runSim() {
 		rocket = new Rocket({
-			dryMass: 150.3,
-			propMass: 0.0359,
-			thrustCurve: "default",
-			airDensity: 1.225,
-			noseConeType: 1,
-			fuselageDiameter: 76,
-			numFins: 4,
-			finLength: 30,
-			finWidth: 50
+			dryMass: dryMass,
+			propMass: propMass,
+			thrustCurve: thrustCurve,
+			airDensity: airDensity,
+			noseConeType: noseConeType,
+			fuselageDiameter: fuselageDiameter,
+			numFins: numFins,
+			finLength: finLength,
+			finWidth: finWidth
 		})
 		let simulation = new Simulation(rocket, 0.01, 1.225)
 		await simulation.run()
 		simulation.printData()
 
 		graphData(rocket)
+
+		
 	}
 
 	function graphData(rocket) {
@@ -418,13 +430,21 @@
 		})
 	}
 
-	runSim()
-
 </script>
 
 <main>
-	<Configuration></Configuration>
-	<div class="start">Run Simulation</div>
+	<Configuration
+		bind:dryMass={dryMass} 
+		bind:propMass={propMass} 
+		bind:thrustCurve={thrustCurve}
+		bind:airDensity={airDensity}
+		bind:noseConeType={noseConeType}
+		bind:fuselageDiameter={fuselageDiameter}
+		bind:numFins={numFins}
+		bind:finLength={finLength}
+		bind:finWidth={finWidth}>
+	</Configuration>
+	<button class="start" on:click={runSim}>Run Simulation</button>
 	<h1>View Data:</h1>
 	<canvas id="altChart"></canvas>
 	<canvas id="vChart"></canvas>
