@@ -1,6 +1,8 @@
 <script>
 	export let name
 	import 'chart.js'
+	import './Configuration.svelte'
+	import Configuration from './Configuration.svelte'
 
 	//Couldn't figure out the best way to import these files, so I just put everything into one file... Bad coding, I know
 	class Simulation {
@@ -421,6 +423,9 @@
 </script>
 
 <main>
+	<Configuration></Configuration>
+	<div class="start">Run Simulation</div>
+	<h1>View Data:</h1>
 	<canvas id="altChart"></canvas>
 	<canvas id="vChart"></canvas>
 	<canvas id="aChart"></canvas>
@@ -434,18 +439,31 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+        font-weight: 100;
+        font-size: 4em;
+        margin-top: 1.2em;
+        margin-bottom: 10px;
+    }
 
 	canvas {
 		/*width: 50% !important;
 		height: 100% !important;*/
+	}
+
+	.start {
+		padding: 10px;
+		background: rgb(16, 155, 16);
+		color: white;
+		cursor: pointer;
+		width: fit-content;
+		border-radius: 5px;
+		font-size: 1.2em;
 	}
 
 	@media (min-width: 640px) {
