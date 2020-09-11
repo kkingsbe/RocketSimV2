@@ -14,6 +14,8 @@
 	var finLength = 0
 	var finWidth = 0
 
+	var altChart, vChart, aChart, dChart, tChart
+
 	//Couldn't figure out the best way to import these files, so I just put everything into one file... Bad coding, I know
 	class Simulation {
 		constructor(rocket, timeStep, airDensity) {
@@ -134,18 +136,14 @@
 		noseConeToDragCoefficient() {
 			switch (this.noseConeType)
 			{
-				case 1:
+				case "1":
 					return 0.05
-					break
-				case 2:
+				case "2":
 					return 0.01
-					break
-				case 3:
+				case "3":
 					return 0.2
-					break
 				default:
 					return 0
-					break
 			}
 		}
 
@@ -307,125 +305,227 @@
 	}
 
 	function graphData(rocket) {
-		var altCanvas = document.getElementById("altChart")
+		let axisLabelFontSize = 20
+		
+		var altCanvas = document.getElementById("altChart").getContext('2d')
+		var gradient = altCanvas.createLinearGradient(450,0,0,0)
+		gradient.addColorStop(0,"rgb(0, 99, 132)")
+		gradient.addColorStop(1,"rgb(255, 99, 132)")
+
 		var vCanvas = document.getElementById("vChart")
 		var aCanvas = document.getElementById("aChart")
 		var dCanvas = document.getElementById("dChart")
 		var tCanvas = document.getElementById("tChart")
 
-		var altChart = new Chart(altCanvas, {
+		if(typeof(altChart) !== "undefined")
+			altChart.destroy()
+		if(typeof(vChart) !== "undefined")
+			vChart.destroy()
+		if(typeof(aChart) !== "undefined")
+			aChart.destroy()
+		if(typeof(dChart) !== "undefined")
+			dChart.destroy()
+		if(typeof(tChart) !== "undefined")
+			tChart.destroy()
+
+		altChart = new Chart(altCanvas, {
 			type: 'line',
 			data: {
 				labels: extract(rocket.altitudeOverTime, "x"),
 				datasets: [{
-					label: "Altitude over time (s)",
-					data: extract(rocket.altitudeOverTime, "y")
+					label: "Altitude",
+					data: extract(rocket.altitudeOverTime, "y"),
+					fill: true,
+					backgroundColor: gradient
 				}],
 			},
 			options: {
-				fill: true,
 				scales: { 
 					xAxes: [{
-						ticks:{ 
+						ticks:{
 							callback: function(value) { 
 								return Number(value).toFixed(0); 
-							} 
-						} 
-					} 
-				]},
-
+							}
+						},
+						scaleLabel: {
+							display: true,
+							labelString: "Time Elapsed (s)",
+							fontSize: axisLabelFontSize
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: "Altitude (m)",
+							fontSize: axisLabelFontSize
+						}
+					}]
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				}
 			}
 		})
-		var vChart = new Chart(vCanvas, {
+		vChart = new Chart(vCanvas, {
 			type: 'line',
 			data: {
 				labels: extract(rocket.velocityOverTime, "x"),
 				datasets: [{
-					label: "Velocity over time (s)",
-					data: extract(rocket.velocityOverTime, "y")
+					label: "Velocity",
+					data: extract(rocket.velocityOverTime, "y"),
+					backgroundColor: gradient
 				}],
 			},
 			options: {
-				fill: true,
 				scales: { 
 					xAxes: [{
-						ticks:{ 
+						ticks:{
 							callback: function(value) { 
 								return Number(value).toFixed(0); 
-							} 
-						} 
-					} 
-				]},
-				
+							},
+							fontSize: 15
+						},
+						scaleLabel: {
+							display: true,
+							labelString: "Time Elapsed (s)",
+							fontSize: axisLabelFontSize
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: "Velocity (m/s)",
+							fontSize: axisLabelFontSize
+						}
+					}]
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				}
 			}
 		})
-		var aChart = new Chart(aCanvas, {
+		aChart = new Chart(aCanvas, {
 			type: 'line',
 			data: {
 				labels: extract(rocket.accelerationOverTime, "x"),
 				datasets: [{
-					label: "Acceleration over time (s)",
-					data: extract(rocket.accelerationOverTime, "y")
+					label: "Acceleration",
+					data: extract(rocket.accelerationOverTime, "y"),
+					backgroundColor: gradient
 				}],
 			},
 			options: {
-				fill: true,
 				scales: { 
 					xAxes: [{
-						ticks:{ 
+						ticks:{
 							callback: function(value) { 
 								return Number(value).toFixed(0); 
-							} 
-						} 
-					} 
-				]},
-				
+							},
+							fontSize: 15
+						},
+						scaleLabel: {
+							display: true,
+							labelString: "Time Elapsed (s)",
+							fontSize: axisLabelFontSize
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: "Acceleration (m/s^2)",
+							fontSize: axisLabelFontSize
+						}
+					}]
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				}
 			}
 		})
-		var dChart = new Chart(dCanvas, {
+		dChart = new Chart(dCanvas, {
 			type: 'line',
 			data: {
 				labels: extract(rocket.dragOverTime, "x"),
 				datasets: [{
-					label: "Drag over time (s)",
-					data: extract(rocket.dragOverTime, "y")
+					label: "Drag",
+					data: extract(rocket.dragOverTime, "y"),
+					backgroundColor: gradient
 				}],
 			},
 			options: {
-				fill: true,
 				scales: { 
 					xAxes: [{
-						ticks:{ 
+						ticks:{
 							callback: function(value) { 
 								return Number(value).toFixed(0); 
-							} 
-						} 
-					} 
-				]},
-				
+							},
+							fontSize: 15
+						},
+						scaleLabel: {
+							display: true,
+							labelString: "Time Elapsed (s)",
+							fontSize: axisLabelFontSize
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: "Drag (N)",
+							fontSize: axisLabelFontSize
+						}
+					}]
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				}
 			}
 		})
-		var tChart = new Chart(tCanvas, {
+		tChart = new Chart(tCanvas, {
 			type: 'line',
 			data: {
 				labels: extract(rocket.thrustOverTime, "x"),
 				datasets: [{
-					label: "Thrust over time (s)",
-					data: extract(rocket.thrustOverTime, "y")
+					label: "Thrust",
+					data: extract(rocket.thrustOverTime, "y"),
+					backgroundColor: gradient
 				}],
 			},
 			options: {
-				fill: true,
 				scales: { 
 					xAxes: [{
-						ticks:{ 
+						ticks:{
 							callback: function(value) { 
 								return Number(value).toFixed(0); 
-							} 
-						} 
-					} 
-				]},
-				
+							},
+							fontSize: 15
+						},
+						scaleLabel: {
+							display: true,
+							labelString: "Time Elapsed (s)",
+							fontSize: axisLabelFontSize
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: "Thrust (N)",
+							fontSize: axisLabelFontSize
+						}
+					}]
+				},
+				elements: {
+					point: {
+						radius: 0
+					}
+				}
 			}
 		})
 	}
@@ -472,8 +572,7 @@
     }
 
 	canvas {
-		/*width: 50% !important;
-		height: 100% !important;*/
+		margin-bottom: 100px;
 	}
 
 	.start {
