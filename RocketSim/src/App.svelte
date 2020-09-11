@@ -4,6 +4,8 @@
 	import './Configuration.svelte'
 	import Configuration from './Configuration.svelte'
 
+	document.title = "Rocket Simulation"
+
 	var dryMass = 0
 	var propMass = 0
 	var thrustCurve = "default"
