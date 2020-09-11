@@ -1,3 +1,5 @@
+import Thrust from './thrust.js'
+
 class Rocket {
     constructor(options) {
         //Unload the settings from the options object
@@ -12,7 +14,7 @@ class Rocket {
         this.finWidth           = options.finWidth / 1000
 
         //Create a thrust object with the desired thrust curve
-        this.thrust             = new this.thrust(thrustCurve)
+        this.thrust             = new Thrust(options.thrustCurve)
 
         //Set the initial value of the variables
         this.accelerationOverTime = []
@@ -23,7 +25,7 @@ class Rocket {
         this.thrustForce          = 0
         this.acceleration         = 0
         this.elapsedTime          = 0
-        this.altitude             = 0
+        this.altitude             = 0.1
         this.velocity             = 0
     }
 
@@ -44,9 +46,9 @@ class Rocket {
 
     calculateDrag() {
         let noseDragCoefficient = this.noseConeToDragCoefficient()
-        let noseDrag = 0.5 * this.airDensity * this.velocity**2 * noseDragCoeficent * this.crossSectionalArea
+        let noseDrag = 0.5 * this.airDensity * this.velocity**2 * noseDragCoefficient * this.crossSectionalArea
         let finDrag = (0.5 * this.airDensity * this.velocity**2 * 0.21 * this.finLength * this.finWidth) * this.numFins
-        
+
         //Add up the nose and fin drag magnitudes to get the net force of drag
         let Fd = noseDrag + finDrag
         
@@ -58,18 +60,14 @@ class Rocket {
     noseConeToDragCoefficient() {
         switch (this.noseConeType)
         {
-            case 1:
+            case "1":
                 return 0.05
-                break
-            case 2:
+            case "2":
                 return 0.01
-                break
-            case 3:
+            case "3":
                 return 0.2
-                break
             default:
                 return 0
-                break
         }
     }
 
@@ -121,3 +119,5 @@ class Rocket {
         this.thrustOverTime.push(t)
     }
 }
+
+export default Rocket

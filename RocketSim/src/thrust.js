@@ -1,3 +1,5 @@
+import thrustCurves from './thrustCurves.js'
+
 class Thrust {
     constructor (name) {
         this.thrustData = thrustCurves[name]
@@ -10,7 +12,7 @@ class Thrust {
     getThrust(t) {
         let t0 = 0, t1 = 1, a0 = 0, a1 = 0
         for(let i = 0; i < this.thrustData.length; i++) {
-            let point = this.thrustData
+            let point = this.thrustData[i]
             
             if(point.x == t) {
                 return point.y
@@ -19,6 +21,7 @@ class Thrust {
             if(point.x < t) {
                 t0 = point.x
                 a0 = point.y
+
             }
 
             else if(point.x > t) {
@@ -34,3 +37,5 @@ class Thrust {
         return this.linearlyInterpolate(t0, t, t1, a0, a1)
     }
 }
+
+export default Thrust

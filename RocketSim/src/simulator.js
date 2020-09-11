@@ -1,3 +1,5 @@
+import Rocket from './rocket.js'
+
 class Simulation {
     constructor(rocket, timeStep, airDensity) {
         this.rocket = rocket
@@ -5,24 +7,27 @@ class Simulation {
         this.airDensity = airDensity
     }
 
-    run() {
-        console.log("Starting sim!")
+    async run() {
+        return new Promise((resolve, reject) => {
+            console.log("Starting sim!")
 
-        let startTime = Date.now()
-        do {
-            this.rocket.tick(this.timeStep)
-        } while (this.rocket.altitude > 0.0 || this.rocket.deltaT <= 5)
-        let endTime = Date.now()
+            let startTime = Date.now()
+            do {
+                this.rocket.tick(this.timeStep)
+            } while (this.rocket.altitude > 0.0 || this.rocket.deltaT <= 5)
+            let endTime = Date.now()
 
-        console.log("Simulation finished!")
+            console.log("Simulation finished!")
+            resolve()
+        })
     }
     
     printData() {
-        let maxAlt = this.getMax(rocket.altitudeOverTime)
-        let maxV = this.getMax(rocket.velocityOverTime)
-        let maxA = this.getMax(rocket.accelerationOverTime)
-        let maxT = this.getMax(rocket.thrustOverTime)
-        let maxD = this.getMax(rocket.dragOverTime)
+        let maxAlt = this.getMax(this.rocket.altitudeOverTime)
+        let maxV = this.getMax(this.rocket.velocityOverTime)
+        let maxA = this.getMax(this.rocket.accelerationOverTime)
+        let maxT = this.getMax(this.rocket.thrustOverTime)
+        let maxD = this.getMax(this.rocket.dragOverTime)
 
         console.log("Max Altitude: " + maxAlt.y);
         console.log("Max Velocity: " + maxV.y);
@@ -53,3 +58,5 @@ class Simulation {
         return max
     }
 }
+
+export default Simulation
