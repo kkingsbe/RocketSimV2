@@ -125,6 +125,8 @@
 			let noseDrag = 0.5 * this.airDensity * this.velocity**2 * noseDragCoefficient * this.crossSectionalArea
 			let finDrag = (0.5 * this.airDensity * this.velocity**2 * 0.21 * this.finLength * this.finWidth) * this.numFins
 			
+			console.log(this.finLength)
+
 			//Add up the nose and fin drag magnitudes to get the net force of drag
 			let Fd = noseDrag + finDrag
 			

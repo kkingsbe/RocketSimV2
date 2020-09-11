@@ -2,12 +2,13 @@
     export let parameter
     export let defaultValue
     export let value
+    export let disabled
     value = defaultValue
 </script>
 
 <main>
-    <p>{parameter}</p>
-    <input id={parameter} placeholder={parameter} bind:value={value}>
+    <p>{parameter}</p> 
+    <input id={parameter} placeholder={parameter} disabled={disabled} bind:value={value}>
 </main>
 
 <style>

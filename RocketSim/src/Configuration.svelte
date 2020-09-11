@@ -7,22 +7,22 @@
     export let noseConeType
     export let fuselageDiameter
     export let numFins
-    export let finLegth
+    export let finLength
     export let finWidth
 </script>
 
 <main>
     <h1>Configure Parameters:</h1>
     <div class="inputGrid">
-        <InputGroup parameter="Dry Mass" defaultValue={150.3} bind:value={dryMass}></InputGroup>
-        <InputGroup parameter="Prop Mass" defaultValue={0.0359} bind:value={propMass}></InputGroup>
-        <InputGroup parameter="Thrust Curve" defaultValue={"default"} bind:value={thrustCurve}></InputGroup>
-        <InputGroup parameter="Air Density" defaultValue={"1.225"} bind:value={airDensity}></InputGroup>
-        <InputGroup parameter="Nose Cone Type" defaultValue={"1"} bind:value={noseConeType}></InputGroup>
-        <InputGroup parameter="Fuselage Diameter" defaultValue={"76"} bind:value={fuselageDiameter}></InputGroup>
+        <InputGroup parameter="Dry Mass (g)" defaultValue={150.3} bind:value={dryMass}></InputGroup>
+        <InputGroup parameter="Prop Mass (g)" defaultValue={0.0359} bind:value={propMass}></InputGroup>
+        <InputGroup parameter="Thrust Curve" defaultValue={"default"} bind:value={thrustCurve} disabled={true}></InputGroup>
+        <InputGroup parameter="Air Density (kg/m^3)" defaultValue={"1.225"} bind:value={airDensity}></InputGroup>
+        <InputGroup parameter="Nose Cone Type" defaultValue={"1"} bind:value={noseConeType} disabled={true}></InputGroup>
+        <InputGroup parameter="Fuselage Diameter (mm)" defaultValue={"76"} bind:value={fuselageDiameter}></InputGroup>
         <InputGroup parameter="Number of Fins" defaultValue={"4"} bind:value={numFins}></InputGroup>
-        <InputGroup parameter="Fin Length" defaultValue={"30"} bind:value={finLegth}></InputGroup>
-        <InputGroup parameter="Fin Width" defaultValue={"50"} bind:value={finWidth}></InputGroup>
+        <InputGroup parameter="Fin Width (mm)" defaultValue={"80"} bind:value={finLength}></InputGroup>
+        <InputGroup parameter="Fin Thickness (mm)" defaultValue={"5"} bind:value={finWidth}></InputGroup>
     </div>
 </main>
 
