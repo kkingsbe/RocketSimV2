@@ -47,8 +47,6 @@
 		simulation.printData()
 
 		graphData(rocket)
-
-		
 	}
 
 	function graphData(rocket) {
@@ -298,18 +296,20 @@
 </script>
 
 <main>
-	<Configuration
-		bind:dryMass={dryMass} 
-		bind:propMass={propMass} 
-		bind:thrustCurve={thrustCurve}
-		bind:airDensity={airDensity}
-		bind:noseConeType={noseConeType}
-		bind:fuselageDiameter={fuselageDiameter}
-		bind:numFins={numFins}
-		bind:finLength={finLength}
-		bind:finWidth={finWidth}>
-	</Configuration>
-	<button class="start" on:click={runSim}>Run Simulation</button>
+	<div class="card">
+		<Configuration
+			bind:dryMass={dryMass} 
+			bind:propMass={propMass} 
+			bind:thrustCurve={thrustCurve}
+			bind:airDensity={airDensity}
+			bind:noseConeType={noseConeType}
+			bind:fuselageDiameter={fuselageDiameter}
+			bind:numFins={numFins}
+			bind:finLength={finLength}
+			bind:finWidth={finWidth}>
+		</Configuration>
+		<button class="start" on:click={runSim}>Run Simulation</button>
+	</div>
 	
 	{#if typeof(altChart) !== "undefined"}
 		<h1>View Data:</h1>
@@ -368,6 +368,13 @@
 		width: fit-content;
 		border-radius: 5px;
 		font-size: 1.2em;
+	}
+
+	.card {
+		padding: 30px;
+		box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+		border-radius: 10px;
+		background: linear-gradient(45deg, #ffe6ea, #ffd8c1);
 	}
 
 	@media (min-width: 640px) {

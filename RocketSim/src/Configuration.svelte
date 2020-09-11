@@ -19,7 +19,7 @@
     <div class="inputGrid">
         <InputGroup parameter="Dry Mass (g)" defaultValue={150.3} bind:value={dryMass}></InputGroup>
         <InputGroup parameter="Prop Mass (g)" defaultValue={0.0359} bind:value={propMass}></InputGroup>
-        <SelectGroup parameter="Thrust Curve" defaultValue={"default"} bind:value={thrustCurve} options={Object.keys(thrustCurves)}></SelectGroup>
+        <SelectGroup parameter="Motor" defaultValue={"default"} bind:value={thrustCurve} options={Object.keys(thrustCurves)}></SelectGroup>
         <InputGroup parameter="Air Density (kg/m^3)" defaultValue={"1.225"} bind:value={airDensity}></InputGroup>
         <InputGroup parameter="Nose Cone Type" defaultValue={"1"} bind:value={noseConeType} disabled={true}></InputGroup>
         <InputGroup parameter="Fuselage Diameter (mm)" defaultValue={"76"} bind:value={fuselageDiameter}></InputGroup>
