@@ -367,6 +367,9 @@
 					point: {
 						radius: 0
 					}
+				},
+				legend: {
+					display: false
 				}
 			}
 		})
@@ -407,6 +410,9 @@
 					point: {
 						radius: 0
 					}
+				},
+				legend: {
+					display: false
 				}
 			}
 		})
@@ -447,6 +453,9 @@
 					point: {
 						radius: 0
 					}
+				},
+				legend: {
+					display: false
 				}
 			}
 		})
@@ -487,6 +496,9 @@
 					point: {
 						radius: 0
 					}
+				},
+				legend: {
+					display: false
 				}
 			}
 		})
@@ -527,6 +539,9 @@
 					point: {
 						radius: 0
 					}
+				},
+				legend: {
+					display: false
 				}
 			}
 		})
@@ -548,10 +563,29 @@
 	</Configuration>
 	<button class="start" on:click={runSim}>Run Simulation</button>
 	<h1>View Data:</h1>
+	{#if typeof(altChart) !== "undefined"}
+		<h2>Altitude</h2>
+	{/if}
 	<canvas id="altChart"></canvas>
+
+	{#if typeof(vChart) !== "undefined"}
+		<h2>Velocity</h2>
+	{/if}
 	<canvas id="vChart"></canvas>
+
+	{#if typeof(aChart) !== "undefined"}
+		<h2>Acceleration</h2>
+	{/if}
 	<canvas id="aChart"></canvas>
+
+	{#if typeof(dChart) !== "undefined"}
+		<h2>Drag</h2>
+	{/if}
 	<canvas id="dChart"></canvas>
+
+	{#if typeof(tChart) !== "undefined"}
+		<h2>Thrust</h2>
+	{/if}
 	<canvas id="tChart"></canvas>
 </main>
 
